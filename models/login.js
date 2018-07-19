@@ -1,4 +1,11 @@
+// scrap this and look up passport
+
+
 // ********** Dependencies **********
+// Sequelize (capital) references the standard library
+var Sequelize = require("sequelize");
+// sequelize (lowercase) references my connection to the DB.
+var sequelize = require("../config/connection.js");
 
 // ********** Handler for user registration **********
 exports.register = function(req, res) {
@@ -7,18 +14,38 @@ exports.register = function(req, res) {
     username: req.body.username,
     password: req.body.password
   };
-  // Query to insert the new user into DB
-  connection.query("INSERT INTO users SET ?", users, function(error) {
-    if (error) {
-      res.send({
-        code: 400,
-        failed: "error ocurred"
-      });
-    } else {
-      res.send({
-        code: 200,
-        success: "user registered sucessfully"
-      });
+  // Check to see if the username already exists
+  connection.query(
+    "SELECT * FROM users WHERE username = ?",
+    [users.username],
+    function(error, results) {
+      if (error) {
+        res.send({
+          code: 400,
+          failed: "error ocurred"
+        });
+      } else {
+        if (results.length > 0) {
+          // Query to insert the new user into DB
+          connection.query("INSERT INTO users SET ?", users, function(error) {
+            if (error) {
+              res.send({
+                code: 400,
+                failed: "error ocurred"
+              });
+            } else {
+              res.send({
+                code: 200,
+                success: "user registered sucessfully"
+              });
+            }
+          });
+        } else {
+          res.send({
+            code: 204,
+            failed: "Username already exists"
+        });
+      }
     }
   });
 };
@@ -27,7 +54,7 @@ exports.register = function(req, res) {
 exports.login = function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
-  // Check to see if the user_name already exists
+  // Check to see if the username already exists
   connection.query(
     "SELECT * FROM users WHERE user_name = ?",
     [username],
@@ -47,13 +74,13 @@ exports.login = function(req, res) {
           } else {
             res.send({
               code: 204,
-              success: "Username and password does not match"
+              failed: "Username and password does not match"
             });
           }
         } else {
           res.send({
             code: 204,
-            success: "Username does not exist"
+            failed: "Username does not exist"
           });
         }
       }
