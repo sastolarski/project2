@@ -46,3 +46,10 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
+
+// temporary for testing
+app.get('/', function(req, res) {
+ 
+    res.send('Welcome to Passport with Sequelize');
+ 
+});
