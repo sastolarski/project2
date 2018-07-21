@@ -55,18 +55,19 @@ INSERT INTO exercises (name, upperBody, lowerBody)
 VALUES ("Calf Raises", false, true);
 
 -- a couple fake users. not sure of the format after the password security is added so feel free to alter as needed
+-- Passwords need to be encrypted, test accounts will need to be created via web form
 
-INSERT INTO users (username, password)
-VALUES ("steven", "stevenIsCool");
+-- INSERT INTO users (username, password)
+-- VALUES ("steven", "stevenIsCool");
 
-INSERT INTO users (username, password)
-VALUES ("paul", "paulIsCool");
+-- INSERT INTO users (username, password)
+-- VALUES ("paul", "paulIsCool");
 
-INSERT INTO users (username, password)
-VALUES ("stacy", "stacyIsCool");
+-- INSERT INTO users (username, password)
+-- VALUES ("stacy", "stacyIsCool");
 
-INSERT INTO users (username, password)
-VALUES ("russell", "russellIsCool");
+-- INSERT INTO users (username, password)
+-- VALUES ("russell", "russellIsCool");
 
 -- fake workout history for a couple users.  seqeulize will add IDs
 
