@@ -9,7 +9,7 @@ Components:
 
 2) Controllers: controllers/authcontroller.js - include: register, login, dashboard, and logout.
 
-3) Models: models/users.js - id, firstname, lastname, username, password, last_login, and status.  firstname, lastname, username, and password are required for register.  username and password are required for login.
+3) Models: models/users.js - id, username, password. username and password are required for register.  username and password are required for login.
 
 4) Routes: routes/auth.js - GET Routes for /register, /login, /dashboard, /logout.  POST routes for /register and /login.  /dashboard route requires user authentication.
 
