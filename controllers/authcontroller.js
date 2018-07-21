@@ -2,17 +2,17 @@ var exports = (module.exports = {});
 
 // Controller for the register route
 exports.register = function(req, res) {
-  res.render("register");
+  res.render("testregister");
 };
 
 // Controller for the login route
 exports.login = function(req, res) {
-  res.render("login");
+  res.render("testlogin");
 };
 
 // Controller for the dashboard route
 exports.dashboard = function(req, res) {
-  res.render("dashboard");
+  res.render("testdashboard");
 };
 
 // Controller for the logout route

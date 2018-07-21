@@ -39,7 +39,7 @@ app.set("view engine", "handlebars");
 
 // For MySQL
 var syncOptions = { force: false };
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
