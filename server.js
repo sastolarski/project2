@@ -3,7 +3,7 @@
 // **********************************
 require("dotenv").load();
 var bodyParser = require("body-parser");
-var cors = require('cors')
+// var cors = require("cors");
 var exphbs = require("express-handlebars");
 var express = require("express");
 var passport = require("passport");
@@ -41,7 +41,7 @@ app.set("view engine", "handlebars");
 var syncOptions = { force: false };
 if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
-};
+}
 
 // For CORS
 // var corsOptions = {
@@ -49,7 +49,6 @@ if (process.env.NODE_ENV === "development") {
 //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
 // app.use(cors());
-
 
 // ****************************
 // ********** MODELS **********
