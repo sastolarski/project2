@@ -19,9 +19,9 @@ app.use(bodyParser.json());
 // For Passport
 app.use(
   session({
-    secret: "promise sassy", // session secret
-    resave: true,
-    saveUninitialized: true
+    secret: process.env.secret, // session secret
+    resave: process.env.resave,
+    saveUninitialized: process.env.saveUninitialized
   })
 );
 app.use(passport.initialize());
@@ -38,7 +38,7 @@ app.set("view engine", "handlebars");
 
 // For MySQL
 var syncOptions = { force: false };
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
 }
 
@@ -59,7 +59,7 @@ require("./config/passport/passport.js")(passport, models.user);
 
 // Test Route
 app.get("/", function(req, res) {
-  res.send("Welcome to Passport with Sequelize");
+  res.send("Welcome to Passport with Sequelize try /register and /login");
 });
 
 ////////////////////////////////////

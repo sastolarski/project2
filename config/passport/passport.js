@@ -10,7 +10,7 @@ module.exports = function(passport, user) {
   var User = user;
   var LocalStrategy = require("passport-local").Strategy;
 
-  // Signup Strategy
+  // Register Strategy
   passport.use(
     "local-signup",
     new LocalStrategy(
@@ -36,9 +36,7 @@ module.exports = function(passport, user) {
             var userPassword = generateHash(password);
             var data = {
               username: username,
-              password: userPassword,
-              firstname: req.body.firstname,
-              lastname: req.body.lastname
+              password: userPassword
             };
             User.create(data).then(function(newUser) {
               if (!newUser) {
@@ -54,7 +52,7 @@ module.exports = function(passport, user) {
     )
   );
 
-  //Signin Strategy
+  // Login Strategy
   passport.use(
     "local-signin",
     new LocalStrategy(
