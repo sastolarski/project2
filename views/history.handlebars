@@ -1,0 +1,51 @@
+
+
+
+  <div class="container history">
+    <div class="upper-container">
+     <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a id="mainPage" href="/main">Go back</a></li>
+       <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
+      </ol>
+     </nav>
+    <div class="row">
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-default" href="/login">Log Out</a>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-default" href="/choose">Go to Exercise</a>
+      </div>
+    </div>
+    <div class="row">
+            
+        <div id="alreay-done">
+            {{#each days}}
+            <table action="history/{{id}}" method="POST">
+                    <tr>
+                      <th>Days</th>
+                      <th>Sets</th> 
+                      <th>Reps</th>
+                      <th>Weight Used</th>
+                    </tr>
+                    <tr>
+                      <td>{{id}}</td>
+                      <td>{{sets}}</td>
+                      <td>{{reps}}</td>
+                      <td>{{weightUsed}}</td>
+                    </tr>
+                   
+                  </table>
+        {{/each}}
+        </div>
+       
+      </div>
+    </div>
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Workout Chart</h5>
+   {{chart}}
+  </div>
+ </div>
+</div>
+  </div>
