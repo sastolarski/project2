@@ -1,99 +1,103 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
+$(document).ready(function(){
+  //login and sign up 
+      $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+    
+          var $this = $(this),
+              label = $this.prev('label');
+        
+              if (e.type === 'keyup') {
+                    if ($this.val() === '') {
+                  label.removeClass('active highlight');
+                } else {
+                  label.addClass('active highlight');
+                }
+            } else if (e.type === 'blur') {
+                if( $this.val() === '' ) {
+                    label.removeClass('active highlight'); 
+                    } else {
+                    label.removeClass('highlight');   
+                    }   
+            } else if (e.type === 'focus') {
+              
+              if( $this.val() === '' ) {
+                    label.removeClass('highlight'); 
+                    } 
+              else if( $this.val() !== '' ) {
+                    label.addClass('highlight');
+                    }
+            }
+        
+        });
+        
+        $('.tab a').on('click', function (e) {
+          
+          e.preventDefault();
+          
+          $(this).parent().addClass('active');
+          $(this).parent().siblings().removeClass('active');
+          
+          target = $(this).attr('href');
+        
+          $('.tab-content > div').not(target).hide();
+          
+          $(target).fadeIn(600);
+          
+        });
+    
+  
+  
+    //ask user enter weight, reps, sets
+  
+  // Get the modal
+  var modal = $("#myModal");
+  
+  // Get the button that opens the modal
+  var btn =$(".myBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = $(".close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+      modal.style.display = "block";
   }
-};
-
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  
+  //see the history 
+  $(function() {
+    $("#addBtn").on("click", function(event) {
+        event.preventDefault();
+        var newHistory = {
+            id : $(this).attr("id-data"),
+            sets: $("#sets").val().trim(),
+            reps: $("#reps").val().trim(),
+            weightUsed: $("#weightUsed").val().trim(),
+        }
+  
+      // Send the PUT request.
+      $.ajax("/api/history", {
+        type: "POST",
+        data: newHistory
+      }).then(
+        function(data) {
+          console.log(newHistory);
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+});
+  
   });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
