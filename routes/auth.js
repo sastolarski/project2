@@ -7,6 +7,11 @@ var authController = require("../controllers/authcontroller.js");
 // ********** ROUTES *********
 // ***************************
 module.exports = function(app, passport) {
+  // app.get("/register", cors(corsOptions), authController.register);
+  // app.get("/login", cors(corsOptions), authController.login);
+  // app.get("/dashboard", cors(corsOptions), isLoggedIn, authController.dashboard);
+  // app.get("/logout", cors(corsOptions), authController.logout);
+  
   app.get("/register", authController.register);
   app.get("/login", authController.login);
   app.get("/dashboard", isLoggedIn, authController.dashboard);

@@ -3,6 +3,7 @@
 // **********************************
 require("dotenv").load();
 var bodyParser = require("body-parser");
+var cors = require('cors')
 var exphbs = require("express-handlebars");
 var express = require("express");
 var passport = require("passport");
@@ -19,9 +20,9 @@ app.use(bodyParser.json());
 // For Passport
 app.use(
   session({
-    secret: process.env.secret, // session secret
-    resave: process.env.resave,
-    saveUninitialized: process.env.saveUninitialized
+    secret: process.env.SECRET, // session secret
+    resave: process.env.RESAVE,
+    saveUninitialized: process.env.SAVEUNINITIALIZED
   })
 );
 app.use(passport.initialize());
@@ -40,7 +41,15 @@ app.set("view engine", "handlebars");
 var syncOptions = { force: false };
 if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
-}
+};
+
+// For CORS
+// var corsOptions = {
+//   origin: process.env.ORIGIN,
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+// app.use(cors());
+
 
 // ****************************
 // ********** MODELS **********
@@ -73,7 +82,7 @@ models.sequelize
     app.listen(PORT, function(err) {
       if (!err) {
         console.log(
-          "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+          "CORS ENABLED ==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
           PORT,
           PORT
         );
