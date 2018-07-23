@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
   //login and sign up 
      $("#signup").on("click", function(){
@@ -67,19 +68,18 @@ $("#logout").on ("click", function(){
             reps: $("#reps").val().trim(),
             weightUsed: $("#weightUsed").val().trim(),
         }
-  
+
       // Send the PUT request.
       $.ajax("/api/history", {
         type: "POST",
         data: newHistory
-      }).then(
-        function(data) {
-          console.log(newHistory);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
+      }).then(function(data) {
+        console.log(data);
+        // Reload the page to get the updated list
+        location.reload();
+      });
     });
+
 });
   
 //track history button
@@ -96,3 +96,4 @@ $("#track"). on ("click", function(){
 
 
   });
+});
