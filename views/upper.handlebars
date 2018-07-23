@@ -13,7 +13,41 @@
         <input type="checkbox" name="upper2" value="standing"> Standing Dumbbell Upright Row. 3 sets, 10-12 reps.<br>
         <input type="checkbox" name="upper3" value="incline" checked> Incline Push-Up. 3 sets, 8-15 reps.<br><br>
     </form>
-    <button type="submit" id="myBtn" class="btn btn-primary">Complete</button>
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Choose</button> 
 
   </div>
 </div>
+
+  <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Sets:</label>
+                    <input type="text" class="form-control" id="sets">
+                  </div>
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Reps:</label>
+                      <input type="text" class="form-control" id="reps">
+                  </div>
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Weight Used:</label>
+                      <input type="text" class="form-control" id="weightUsed">
+                  </div>
+                
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button id ="add" type="button" class="btn btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+        </div> 
