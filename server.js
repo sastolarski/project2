@@ -1,3 +1,4 @@
+
 // **********************************
 // ********** DEPENDENCIES **********
 // **********************************
@@ -10,6 +11,7 @@ var passport = require("passport");
 var session = require("express-session");
 
 // For Express
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 app.use(express.static(__dirname + "/public"));
@@ -89,3 +91,4 @@ models.sequelize
   .catch(function(err) {
     console.log(err, "Something went wrong with the Database Update!");
   });
+

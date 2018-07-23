@@ -1,96 +1,73 @@
-$(document).ready(function() {
-  //login and sign up
-  $(".form")
-    .find("input, textarea")
-    .on("keyup blur focus", function(e) {
-      var $this = $(this),
-        label = $this.prev("label");
 
-      if (e.type === "keyup") {
-        if ($this.val() === "") {
-          label.removeClass("active highlight");
-        } else {
-          label.addClass("active highlight");
-        }
-      } else if (e.type === "blur") {
-        if ($this.val() === "") {
-          label.removeClass("active highlight");
-        } else {
-          label.removeClass("highlight");
-        }
-      } else if (e.type === "focus") {
-        if ($this.val() === "") {
-          label.removeClass("highlight");
-        } else if ($this.val() !== "") {
-          label.addClass("highlight");
-        }
+$(document).ready(function(){
+  //login and sign up 
+     $("#signup").on("click", function(){
+       if (!$("#newUser").val().trim() || !$("#password1").val()){
+         alert("Please enter valid information!")
+       } else {
+         var newUser = {
+           newName: $("#newUser").val().trim(),
+           newPassword: $("#password1").val().trim(),
+         }
+         $.ajax("/api/signup",{
+           type: post,
+           data: newUser
+         }).then(function(data){
+          window.location.replace("https://www.google.com");
+         });
+       }
+     });
+
+     $("#login").on("click", function(){
+      if (!$("#username").val().trim() || !$("#password").val()){
+        alert("Please enter valid information!")
+      } else {
+        $.ajax("/api/login",{
+          type: "GET",
+          data: {
+            username: $("#username"),
+            password: $("#password")
+          }
+        }).then(function(data){
+         window.location.replace(data.url);
+        });
       }
-    });
+    }); 
 
-  $(".tab a").on("click", function(e) {
-    e.preventDefault();
-
-    $(this)
-      .parent()
-      .addClass("active");
-    $(this)
-      .parent()
-      .siblings()
-      .removeClass("active");
-
-    target = $(this).attr("href");
-
-    $(".tab-content > div")
-      .not(target)
-      .hide();
-
-    $(target).fadeIn(600);
+  //Log out event
+$("#logout").on ("click", function(){
+  $.ajax("/api/logout", {
+    type: "UPDATE",
+    data: {
+      username: $("#username").text()
+    }
+  }).then(function(data){
+    //??????
   });
 
+});
+
+//Modals
   //ask user enter weight, reps, sets
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var recipient = button.data('whatever'); // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('.modal-title').text('New message to ' + recipient);
+    modal.find('.modal-body input').val(recipient);
+  });
 
-  // Get the modal
-  var modal = $("#myModal");
-
-  // Get the button that opens the modal
-  var btn = $(".myBtn");
-
-  // Get the <span> element that closes the modal
-  var span = $(".close")[0];
-
-  // When the user clicks the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
-  };
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  };
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
-
-  //see the history
+  //see the history 
   $(function() {
     $("#addBtn").on("click", function(event) {
-      event.preventDefault();
-      var newHistory = {
-        id: $(this).attr("id-data"),
-        sets: $("#sets")
-          .val()
-          .trim(),
-        reps: $("#reps")
-          .val()
-          .trim(),
-        weightUsed: $("#weightUsed")
-          .val()
-          .trim()
-      };
+        event.preventDefault();
+        var newHistory = {
+            sets: $("#sets").val().trim(),
+            reps: $("#reps").val().trim(),
+            weightUsed: $("#weightUsed").val().trim(),
+        }
 
       // Send the PUT request.
       $.ajax("/api/history", {
@@ -102,5 +79,21 @@ $(document).ready(function() {
         location.reload();
       });
     });
+
+});
+  
+//track history button
+$("#track"). on ("click", function(){
+ $.ajax ("/api/history", {
+   type: "GET",
+   data: {
+     username: $("#username").text()
+   }
+ }).then(function(data){
+   location.reload();
+ });
+});
+
+
   });
 });
