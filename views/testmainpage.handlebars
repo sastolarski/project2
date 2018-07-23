@@ -1,0 +1,63 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <button type="submit" class="btn btn-primary logout">
+        Logout
+      </button>
+    </li>
+  </ol>
+</nav>
+
+<h2 class=" id="{{user}}" >Welcome Back {{user}}</h2>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h4 class="card-text">
+          Upper Body
+        </h4>
+        <form>
+          {{#each exercise}}
+            {{#if upperBody}}
+              {{> exercise upperBody=true}}
+            {{/if}}
+          {{/each}}
+          <button type="submit" class="btn btn-primary upperbody">
+            Let's Go
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h4 class="card-text">
+          Lower Body
+        </h4>
+        <form>
+          {{#each exercise}}
+            {{#if lowerBody}}
+              {{> exercise upperBody=true}}
+            {{/if}}
+          {{/each}}
+          <button type="submit" class="btn btn-primary lowerbody">
+            Let's Go
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h4 class="card-text">Track History</h4>
+        <button type="submit" class="btn btn-primary">
+          View History
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/mainpage.js"></script>
+      
