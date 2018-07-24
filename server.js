@@ -1,3 +1,4 @@
+
 // **********************************
 // ********** DEPENDENCIES **********
 // **********************************
@@ -33,7 +34,7 @@ app.use(passport.session()); // persistent login sessions
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: "testmain"
   })
 );
 app.set("view engine", "handlebars");
@@ -89,3 +90,4 @@ models.sequelize
   .catch(function(err) {
     console.log(err, "Something went wrong with the Database Update!");
   });
+
