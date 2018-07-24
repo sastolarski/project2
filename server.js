@@ -13,6 +13,8 @@ var session = require("express-session");
 // For Express
 
 var app = express();
+var PORT = process.env.PORT || 3000;
+app.use(express.static(__dirname + "/public"));
 
 // For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -59,17 +61,13 @@ var models = require("./models");
 // ***************************
 // ********** ROUTES *********
 // ***************************
-require("./routes/auth.js")(app, passport);
+require("./routes/authRoutes.js")(app, passport);
+require("./routes/htmlRoutes.js")(app, passport);
 
 // ********************************
 // ********** STRATEGIES **********
 // ********************************
 require("./config/passport/passport.js")(passport, models.user);
-
-// Test Route
-app.get("/", function(req, res) {
-  res.send("Welcome to Passport with Sequelize try /register and /login");
-});
 
 ////////////////////////////////////
 ////////// Sync and Start //////////
