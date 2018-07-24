@@ -1,4 +1,3 @@
-
 // **********************************
 // ********** DEPENDENCIES **********
 // **********************************
@@ -90,4 +89,3 @@ models.sequelize
   .catch(function(err) {
     console.log(err, "Something went wrong with the Database Update!");
   });
-

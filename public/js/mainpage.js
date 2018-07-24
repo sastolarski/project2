@@ -4,27 +4,27 @@ function logout() {
   }).then(function() {
     window.location.href = "/logout";
   });
-};
+}
 
 function upperbody() {
-  var exercises = { exercise: ["1", "2", "3"]} ;
+  var exercises = { exercise: ["1", "2", "3"] };
   $.ajax("/upperbody", {
     type: "POST",
     data: exercises
-  }).then(function(b) {
+  }).then(function() {
     window.location.href = "/upperbody";
   });
-};
+}
 
 function upperbody() {
-  var exercises = { exercise: ["11", "22", "13"]} ;
+  var exercises = { exercise: ["11", "22", "13"] };
   $.ajax("/upperbody", {
     type: "POST",
     data: exercises
-  }).then(function(b) {
+  }).then(function() {
     window.location.href = "/lowerbody";
   });
-};
+}
 
 // Ensure the page is loaded before beginning
 $(document).ready(function() {
@@ -33,8 +33,8 @@ $(document).ready(function() {
     logout();
   });
   $("html").on("click", ".upperbody", function(event) {
-  	event.preventDefault();
-  	upperbody();
+    event.preventDefault();
+    upperbody();
   });
   $("html").on("click", ".lowerbody", function(event) {
     event.preventDefault();

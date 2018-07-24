@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.post("/upperbody", isLoggedIn, htmlController.upperbody); // Route for upperbody workout
   app.post("/lowerbody", isLoggedIn, htmlController.lowerbody); // Route for lowerbody workout
   app.post("/submit", isLoggedIn, htmlController.lowerbody); // Route to submit workout data
-  
+
   // Protects the HTML routes to only allow signed in user
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

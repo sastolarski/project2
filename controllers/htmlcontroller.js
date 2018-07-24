@@ -36,13 +36,13 @@ exports.exerciseSummary = function(req, res) {
       userId: req.params.userid,
       exerciseId: req.params.exerciseid
     }
-  }).then(function(data) {
+  }).then(function() {
     res.render("testworkoutsummary");
   });
 };
 
 // Controller for upperbody exercise recording
-exports.upperbody = function(req, res) {
+exports.upperbody = function(req) {
   var exercise = req.body.exercise;
   var user = req.user.id;
   var lastStats = [];
@@ -51,18 +51,18 @@ exports.upperbody = function(req, res) {
       limit: 1,
       where: {
         userId: user,
-        exerciseId: parseInt(exercise[i])  
+        exerciseId: parseInt(exercise[i])
       },
-      order: [ [ 'createdAt', 'DESC' ]]
-    }).then(function(data){
+      order: [["createdAt", "DESC"]]
+    }).then(function(data) {
       lastStats.push(data[0].dataValues);
-    }); 
-  };
-  // res.render the appropriate handlebar page 
+    });
+  }
+  // res.render the appropriate handlebar page
 };
 
 // Controller for upperbody exercise recording
-exports.lowerbody = function(req, res) {
+exports.lowerbody = function(req) {
   var exercise = req.body.exercise;
   var user = req.user.id;
   var lastStats = [];
@@ -71,18 +71,18 @@ exports.lowerbody = function(req, res) {
       limit: 1,
       where: {
         userId: user,
-        exerciseId: parseInt(exercise[i])  
+        exerciseId: parseInt(exercise[i])
       },
-      order: [ [ 'createdAt', 'DESC' ]]
-    }).then(function(data){
+      order: [["createdAt", "DESC"]]
+    }).then(function(data) {
       lastStats.push(data[0].dataValues);
-    }); 
-  };
-  // res.render the appropriate handlebar page 
+    });
+  }
+  // res.render the appropriate handlebar page
 };
 
 // Controller for exercise history
-exports.history = function(req, res) {
+exports.history = function(req) {
   // This needs a query for the last x workouts
   // This should be displayed in a handlebar
   // do we want x to be selectable? aka history 1 week, 1 month etc.
@@ -91,23 +91,20 @@ exports.history = function(req, res) {
     where: {
       userId: req.user.id
     }
-  }).then(function(data) {
-
-  }); 
-  // res.render the appropriate handlebar page
+  });
 };
 
 // Controller for exercise submission
-exports.submit = function(req, res) {
+exports.submit = function(req) {
   db.UserData.create({
     userId: req.user.id,
     exerciseId: req.body.exercise.id,
     sets: req.body.exercise.sets,
     reps: req.body.exercise.reps,
     weightUsed: req.body.exercise.weight
-  }).then(function(){
+  }).then(function() {
     // Client should render /mainPage after
-  })
+  });
 };
 
 // Controller for the logout route
