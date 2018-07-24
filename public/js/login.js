@@ -35,11 +35,11 @@ function register() {
 // Ensure the page is loaded before beginning
 $(document).ready(function() {
   //
-  $(".login").on("click", function(event) {
+  $("html").on("click", ".login", function(event) {
     event.preventDefault();
     login();
   });
-  $(".register").on("click", function(event) {
+  $("html").on("click", ".register", function(event) {
     event.preventDefault();
     register();
   });
