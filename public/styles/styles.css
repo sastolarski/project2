@@ -1,3 +1,64 @@
-.list-group-item {
-  line-height: 2.5;
+.jumbotron-fluid {
+  background-image: url("http://www.bravotv.com/sites/nbcubravotv/files/legacy/workout-logo.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: #daf2ea;
+}
+
+body {
+  background-image: url("https://cdn.images.express.co.uk/img/dynamic/11/590x/secondary/Gym-workout-diet-1177877.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  position: relative;
+  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+  animation: mymove 5s infinite;
+}
+
+#upCard {
+  background: lightblue;
+  padding: 100px 50px;
+  border-radius: 25px;
+
+
+}
+
+#upCard {
+  animation-timing-function: ease;
+}
+#lowCard {
+  animation-timing-function: ease-in;
+}
+#historyCard {
+  animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes mymove {
+  from {left: 0px;}
+  to {left: 280px;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 280px;}
+}
+
+
+#lowCard {
+  background: lightgray;
+  padding: 150px 50px;
+  border-radius: 25px;
+}
+
+#historyCard {
+  background: lightgoldenrodyellow;
+  padding: 200px 50px;
+  border-radius: 25px;
+}
+
+h4 {
+  text-shadow: 0 0 3px #FF0000;
 }
