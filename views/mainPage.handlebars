@@ -1,36 +1,35 @@
-  <div id="exercisePage">
-    <div class="container">
-     <nav aria-label="breadcrumb">
+<div id="exercisePage">
+  <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a id="logout" href="/api/login">Log Out</a></li>
-       <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
+        <li class="breadcrumb-item"><a id="logout" href="login.html">Log Out</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
       </ol>
-     </nav>
-
+  </nav>
+  <div class="container">
       <div class="row">
-       <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-         <div class="card-body">
+      <div class="col-md-4">
+      <div id ="upCard" class="card" style="width: 18rem;">
+          <div class="card-body">
           <h4 class="card-text">Upper Body</h4>
-          <a href="/upperbody" class="card-link">Let's Go!</a>
-         </div>
-        </div>
-       </div>
-       <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-         <div class="card-body">
-          <h4 class="card-text">Lower Body</h4>
-          <a href="/lowerbody" class="card-link">Let's Go!</a>
-         </div>
-        </div>
-       </div>
-        
-       <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-         <div class="card-body">
-          <h4 class="card-text">Track History</h4>
-          <button id="track">Go Tracking!</button>
-         </div>
-        </div>
-       </div>
+          <a href="upper.handlebars" class="card-link">Let's Go!</a>
+          </div>
       </div>
+      </div>
+      <div class="col-md-4">
+      <div id="lowCard" class="card" style="width: 18rem;">
+          <div class="card-body">
+          <h4 class="card-text">Lower Body</h4>
+          <a href="lowerPage.handlebars" class="card-link">Let's Go!</a>
+          </div>
+      </div>
+      </div>
+      
+      <div class="col-md-4">
+      <div id="historyCard" class="card" style="width: 18rem;">
+          <div class="card-body">
+          <h4 class="card-text">Track History</h4>
+          <a href="history.handlebars" id="track" class="card-link">Go Tracking!</a>
+          </div>
+      </div>
+      </div>
+</div>

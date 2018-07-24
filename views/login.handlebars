@@ -1,70 +1,31 @@
- <div class="form">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Workout Tracking</h1>
+        <h2 class="lead">You can feel sore tomorrow, or you can feel sorry tomorrw, you choose!!</h2>
+    </div>
+</div>
+      
+<div class="container">
+    <div class = "rows">
+        <div class="col-md-3"></div>
+        <div class="col-md-6"> 
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id ="username" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button id ="login" type="submit" class="btn btn-primary">Log In</button>
+            </form>
+        </div> 
+        <div class="col-md-3"></div>
+    </div>
+</div>
 
-        {{!-- <ul class="tab-group">
-            <li class="tab active"><a href="#signup">Sign Up</a></li>
-            <li class="tab"><a href="#login">Log In</a></li>
-        </ul> --}}
-        
-        <div class="tab-content">
-            <div>   
-            <h1>Sign Up for Free</h1>
-            
-            <form>
-            
-            <div class="top-row">
-                <div class="field-wrap">
-                <label>
-                    <span class="req">*</span>
-                </label>
-                <input id="newUser"type="text" required autocomplete="off" />
-                </div>
-            
-            </div>
-            
-            <div class="field-wrap">
-                <label>
-                Set A Password<span class="req">*</span>
-                </label>
-                <input id="password1" type="password"required autocomplete="off"/>
-            </div>
-            
-            <button type="submit" id = "signup" class="button button-block"/>Get Started</button>
-            
-            </form>
-    
-            </div>
-            
-            <div>   
-            <h1>Welcome Back!</h1>
-            
-            <form>
-            
-                <div class="field-wrap">
-                <label>
-                    Username<span class="req">*</span>
-                </label>
-                <input id="username"type="text" required autocomplete="off" />
-                </div>
-            
-            <div class="field-wrap">
-                <label>
-                Password<span class="req">*</span>
-                </label>
-                <input id="password" type="password"required autocomplete="off"/>
-            </div>
-            
-            <p class="forgot"><a href="#">Forgot Password?</a></p>
-            
-            <button id="login" class="button button-block"/>Log In</button>
-            
-            </form>
-    
-            </div>
-                
-            </div><!-- tab-content -->
-            
-        </div> <!-- /form -->
- 
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
