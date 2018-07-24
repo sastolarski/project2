@@ -1,17 +1,23 @@
-   
-<h1>Upper Body</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a id="logout" href="/main">Log Out</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
+  </ol>
+</nav>
 <div id="upperPage">
   <div class="upper-container">
-     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a id="mainPage" href="/main">Go back</a></li>
-       <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
-      </ol>
-     </nav>
+    <h1>Upper Body</h1>
     <form>
-        <input type="checkbox" name="upper1" value="dumbbell"> Dumbbell Bench Press. Superset with Dips. 3 sets, 8-10 reps.<br>
-        <input type="checkbox" name="upper2" value="standing"> Standing Dumbbell Upright Row. 3 sets, 10-12 reps.<br>
-        <input type="checkbox" name="upper3" value="incline" checked> Incline Push-Up. 3 sets, 8-15 reps.<br><br>
+        <input type="checkbox" name="upper1" value="Bench Press"> Bench Press<br>
+        <input type="checkbox" name="upper2" value="Incline Bench Press"> Incline Bench Press<br>
+        <input type="checkbox" name="upper3" value="Dumbbell Bench Press" checked> Dumbbell Bench Press<br>
+        <input type="checkbox" name="upper4" value="Dips"> Dips<br>
+        <input type="checkbox" name="upper5" value="Barbell Row"> Barbell Row<br>
+        <input type="checkbox" name="upper6" value="Dumbbell Rows"> Dumbbell Rows<br>
+        <input type="checkbox" name="upper7" value="Pullups"> Pullups<br>
+        <input type="checkbox" name="upper8" value="Lat Pulldown"> Lat Pulldown<br>
+        <input type="checkbox" name="upper9" value="Overhead Press"> Overhead Press<br>
+        <input type="checkbox" name="upper10" value="Lateral Raise"> Lateral Raise<br><br>
     </form>
      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Choose</button> 
 
@@ -23,7 +29,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Enter your information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
