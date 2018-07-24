@@ -61,6 +61,7 @@ var models = require("./models");
 // ***************************
 require("./routes/authRoutes.js")(app, passport);
 require("./routes/htmlRoutes.js")(app, passport);
+require("./routes/apiRoutes.js")(app);
 
 // ********************************
 // ********** STRATEGIES **********
