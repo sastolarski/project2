@@ -8,14 +8,15 @@
       </nav>
       <h1>Lower Body</h1>
       <form>
-      {{#each link}}
+      {{#each div}}
         {{#each exercise}}
-          {{#if lowerBody}}
-           {{> exercise lowerBody=true}}
-              <a href="#" data-toggle="modal" data-target ="#myModal">{{lowerBody}}</a>
-          {{/if}}
+          <a href="#" data-toggle="modal" data-target ="#myModal">
+           {{#if lowerBody}}
+            {{> exercise lowerBody=true}}
+           {{/if}}
+          </a>
         {{/each}}
-      {{/each}}
+      {{~/each}}
         {{!-- <input type="checkbox" name="lower1" value="Barbell Squats"> Barbell Squats<br>
         <input type="checkbox" name="lower2" value="Deadlift"> Deadlift<br>
         <input type="checkbox" name="lower3" value="Front Squats" checked> Front Squats<br>

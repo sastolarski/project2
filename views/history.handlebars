@@ -1,5 +1,3 @@
-  <div class="container history">
-    <div class="upper-container">
      <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <button id = "logout">Log Out</button>
@@ -7,10 +5,11 @@
       </ol>
      </nav>
 
+{{!-- table for track the history --}}
+  <div class="history-container">
     <div class="row">
-            
-        <div id="alreay-done">
-      
+      <div class="col-md-3"></div>
+      <div class="col-md-6">    
         {{#each exercise}}
         <title>{{exercise}}</title>
             <table>
@@ -25,20 +24,25 @@
                       <td>{{reps}}</td>
                       <td>{{weightUsed}}</td>
                     </tr>
-                    {{/each}}
-                   
+                    {{/each}}         
             </table>
         {{/each}}
-     
+      </div>
+      </div> 
+    </div>
+  </div>
+
+{{!-- chart  --}}
+  <div class="history-container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6"> 
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">Workout Chart</h5>
+        {{chart}}
         </div>
-       
+        </div>
       </div>
     </div>
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Workout Chart</h5>
-   {{chart}}
-   </div>
   </div>
- </div>
-</div>

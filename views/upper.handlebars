@@ -7,15 +7,16 @@
 <div id="upperPage">
   <div class="upper-container">
     <h1>Upper Body</h1>
-    <form>
-        {{#each link}}
+    <form class="exLink">
+        {{#each div}}
          {{#each exercise}}
+          <a href="#" data-toggle="modal" data-target ="#myModal">
           {{#if upperBody}}
            {{> exercise upperBody=true}}
-              <a href="#" data-toggle="modal" data-target ="#myModal">{{upperBody}}</a>
           {{/if}}
+          </a>
          {{/each}}
-        {{/each}}
+        {{~/each}}
         {{!-- <input type="checkbox" name="upper2" value="Incline Bench Press"> Incline Bench Press<br>
         <input type="checkbox" name="upper3" value="Dumbbell Bench Press" checked> Dumbbell Bench Press<br>
         <input type="checkbox" name="upper4" value="Dips"> Dips<br>
@@ -25,7 +26,6 @@
         <input type="checkbox" name="upper8" value="Lat Pulldown"> Lat Pulldown<br>
         <input type="checkbox" name="upper9" value="Overhead Press"> Overhead Press<br>
         <input type="checkbox" name="upper10" value="Lateral Raise"> Lateral Raise<br><br> --}}
-
     </form>
 
   </div>
