@@ -1,8 +1,44 @@
 <div class="form-check">
+	
+
 	<input class="form-check-input" type="checkbox" value="{{name}}" id="{{name}}" name="{{name}}">
 	<label class="form-check-label" for="defaultCheck1">
 		<a href="/mainpage/{{id}}/{{userid}}">
 			{{name}}
 		</a>
 	</label>
+</div>
+
+{{!-- upper card --}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+	  <form>
+		{{#each exercise}}
+		{{#if upperBody}}
+			{{> exercise upperBody=true}}
+		{{/if}}
+		{{/each}}
+	  </form> 
+	</div>
+
+{{!-- lower card --}}
+	<div class="col-md-4">
+ 	  <form>
+	    {{#each exercise}}
+	    {{#if lowerBody}}
+			{{> exercise lowerBody=true}}
+		{{/if}}
+		{{/each}}
+	  </form>
+    </div>
+
+{{!-- Track history --}}
+	<div class ="col-md-4">
+	  <div>
+        <h4 class="card-text">Track History</h4>
+        <a href="/history/{{id}}/{{userid}}" class="track" class="card-link">Go Tracking!</a>
+      </div>
+	</div>
+  </div>
 </div>
