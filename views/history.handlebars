@@ -10,19 +10,17 @@
     <div class="row">
             
         <div id="alreay-done">
-      {{#if days}}
-        {{#each days}}
-        <title>{{date}}</title>
+      
+        {{#each exercise}}
+        <title>{{exercise}}</title>
             <table>
                     <tr>
-                      <th>Exercise</th> 
                       <th>Set</th>
                       <th>Reps</th>
                       <th>Weight Used</th>
                     </tr>
                     {{#each data}}
                     <tr>
-                      <td>{{exercise}}</td>
                       <td>{{sets}}</td>
                       <td>{{reps}}</td>
                       <td>{{weightUsed}}</td>
@@ -31,7 +29,7 @@
                    
             </table>
         {{/each}}
-      {{/if}}
+     
         </div>
        
       </div>

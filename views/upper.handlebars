@@ -8,8 +8,15 @@
   <div class="upper-container">
     <h1>Upper Body</h1>
     <form>
-        <a href="/input" type="link" name="upper1" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Bench Press"> Bench Press<br>
-        <input type="checkbox" name="upper2" value="Incline Bench Press"> Incline Bench Press<br>
+        {{#each link}}
+         {{#each exercise}}
+          {{#if upperBody}}
+           {{> exercise upperBody=true}}
+              <a href="#" data-toggle="modal" data-target ="#myModal">{{upperBody}}</a>
+          {{/if}}
+         {{/each}}
+        {{/each}}
+        {{!-- <input type="checkbox" name="upper2" value="Incline Bench Press"> Incline Bench Press<br>
         <input type="checkbox" name="upper3" value="Dumbbell Bench Press" checked> Dumbbell Bench Press<br>
         <input type="checkbox" name="upper4" value="Dips"> Dips<br>
         <input type="checkbox" name="upper5" value="Barbell Row"> Barbell Row<br>
@@ -17,15 +24,15 @@
         <input type="checkbox" name="upper7" value="Pullups"> Pullups<br>
         <input type="checkbox" name="upper8" value="Lat Pulldown"> Lat Pulldown<br>
         <input type="checkbox" name="upper9" value="Overhead Press"> Overhead Press<br>
-        <input type="checkbox" name="upper10" value="Lateral Raise"> Lateral Raise<br><br>
+        <input type="checkbox" name="upper10" value="Lateral Raise"> Lateral Raise<br><br> --}}
+
     </form>
-     <button type="button" >Choose</button> 
 
   </div>
 </div>
 
   <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
