@@ -38,6 +38,6 @@ $(document).ready(function() {
   });
   $("html").on("click", ".lowerbody", function(event) {
     event.preventDefault();
-    upperbody();
+    lowerbody();
   });
 });

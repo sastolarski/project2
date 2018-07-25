@@ -2,20 +2,36 @@
 // ********** Controllers **********
 // *********************************
 var exports = (module.exports = {});
+// *************************************
+// ********** GET Controllers **********
+// *************************************
+// Controller for the logout route
+exports.logout = function(req, res) {
+  req.session.destroy(function(err) {
+    if (!err) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+    }
+  });
+};
 
 // **************************************
 // ********** POST Controllers **********
 // **************************************
-exports.signup = function(req, res, passport) {
+
+// Controller for the signup POST route
+exports.signup = function() {
   passport.authenticate("local-signup", {
     successRedirect: "/mainpage",
     failureRedirect: "/"
-  })
+  });
 };
 
-exports.login = function(req, res, passport) {
+//controller for the login POST route
+exports.login = function() {
   passport.authenticate("local-signin", {
     successRedirect: "/mainpage",
     failureRedirect: "/"
-  })
+  });
 };
