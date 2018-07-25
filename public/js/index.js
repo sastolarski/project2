@@ -7,57 +7,52 @@ $(document).ready(function(){
         alert("Please enter valid information!")
       } else {
         var newUser = {
-          newName: $("#newUser").val().trim(),
-          newPassword: $("#password1").val().trim(),
+          username: $("#newUser").val().trim(),
+          password: $("#password1").val().trim(),
         }
   
-        $.ajax("/api/signup",{
+        $.ajax("/register",{
           type: "POST",
           data: newUser
         }).then(function(data){
-         window.location.replace(data.url);
+         window.location.href("/mainpage");
        
         });
       }
     });
     
-    $("#login1").on("click", function(){
-      $("#signupPage").hide();
-      $("#loginPage").show();
-    });
+  
 
     $("#login").on("click", function(){
-      if (!$("#username").val().trim() || !$("#password").val()){
+      if (!$("#username").val().trim() || !$("#password").val().trim()){
         alert("Please enter valid information!")
       } else {
-        $.ajax("/api/login",{
+        $.ajax("/login",{
           type: "GET",
           data: {
-            username: $("#username"),
-            password: $("#password")
+            username: $("#username").val().trim(),
+            password: $("#password").val().trim()
           }
         }).then(function(data){
-         window.location.replace(data.url);
+         window.location.href("/mainpage");
         });
        }
      }); 
   
   //Log out event
     $("#logout").on ("click", function(){
-      $.ajax("/api/logout", {
-        type: "UPDATE",
-        data: {
-          username: $("#username").text()
-        }
+      $.ajax("/logout", {
+        type: "GET",
+      
       }).then(function(data){
-        window.location.replace(data.url);
+        window.location.href("/logout");
       });
      });
   
   //Modals
     //ask user enter weight, reps, sets
     $('#exampleModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget); // Button that triggered the modal
+      var link = $(event.relatedTarget); // Button that triggered the modal
       // var recipient = button.data('whatever'); // Extract info from data-* attributes
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -87,7 +82,7 @@ $(document).ready(function(){
    });
   
    //track history
-  $("#track").on ("click", function(){
+  $(".track").on ("click", function(){
     $.ajax("/api/history", {
       type: "GET",
       data: {
