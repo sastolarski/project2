@@ -1,19 +1,15 @@
+// **********************************
+// ********** DEPENDENCIES **********
+// **********************************
+var authController = require("../controllers/authController.js");
+
 // ***************************
 // ********** ROUTES *********
 // ***************************
 module.exports = function(app, passport) {
-  app.post(
-    "/register",
-    passport.authenticate("local-signup", {
-      successRedirect: "/mainpage",
-      failureRedirect: "/"
-    })
-  );
-  app.post(
-    "/login",
-    passport.authenticate("local-signin", {
-      successRedirect: "/mainpage",
-      failureRedirect: "/"
-    })
-  );
+  // *********************************
+  // ********** POST Routes **********
+  // *********************************
+  app.post("/register", authController.signup, passport);
+  app.post("/login", authController.login, passport);
 };

@@ -8,14 +8,49 @@ var db = require("../models");
 // *********************************
 var exports = (module.exports = {});
 
+// *************************************
+// ********** GET Controllers **********
+// *************************************
+
+// Controller for the homepage
+exports.example = function(req, res) {
+  res.render("example");
+};
+
+// Controller for the login route
+exports.signup = function(req, res) {
+  res.render("signuppage");
+};
+
 // Controller for the login route
 exports.login = function(req, res) {
-  res.render("testlogin");
+  res.render("login");
+};
+
+// Controller for the logout route
+exports.logout = function(req, res) {
+  req.session.destroy(function(err) {
+    if (!err) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+    }
+  });
 };
 
 // Controller for the dashboard route
 exports.mainPage = function(req, res) {
-  db.Exercise.findAll({}).then(function(data) {
+  res.render("mainPage");
+};
+
+// Controller for upperbody exercise recording
+exports.upperbody = function(req) {
+ db.Exercise.findAll(
+  {
+    where: { 
+      upperBody: true 
+    }
+  }).then(function(data) {
     var exerciseArray = [];
     for (var i = 0; i < data.length; i++) {
       data[i].dataValues.userid = req.user.id;
@@ -25,7 +60,28 @@ exports.mainPage = function(req, res) {
       exercise: exerciseArray,
       user: req.user.username
     };
-    res.render("testmainpage", exerciseObject);
+    res.render("upper", exerciseObject);
+  });
+};
+
+// Controller for upperbody exercise recording
+exports.lowerbody = function(req) {
+  db.Exercise.findAll(
+  {
+    where: { 
+      lowerBody: true 
+    }
+  }).then(function(data) {
+    var exerciseArray = [];
+    for (var i = 0; i < data.length; i++) {
+      data[i].dataValues.userid = req.user.id;
+      exerciseArray.push(data[i].dataValues);
+    }
+    var exerciseObject = {
+      exercise: exerciseArray,
+      user: req.user.username
+    };
+    res.render("lowerPage", exerciseObject);
   });
 };
 
@@ -41,45 +97,9 @@ exports.exerciseSummary = function(req, res) {
   });
 };
 
-// Controller for upperbody exercise recording
-exports.upperbody = function(req) {
-  var exercise = req.body.exercise;
-  var user = req.user.id;
-  var lastStats = [];
-  for (var i = 0; i < exercise.length; i++) {
-    db.UserData.findAll({
-      limit: 1,
-      where: {
-        userId: user,
-        exerciseId: parseInt(exercise[i])
-      },
-      order: [["createdAt", "DESC"]]
-    }).then(function(data) {
-      lastStats.push(data[0].dataValues);
-    });
-  }
-  // res.render the appropriate handlebar page
-};
 
-// Controller for upperbody exercise recording
-exports.lowerbody = function(req) {
-  var exercise = req.body.exercise;
-  var user = req.user.id;
-  var lastStats = [];
-  for (var i = 0; i < exercise.length; i++) {
-    db.UserData.findAll({
-      limit: 1,
-      where: {
-        userId: user,
-        exerciseId: parseInt(exercise[i])
-      },
-      order: [["createdAt", "DESC"]]
-    }).then(function(data) {
-      lastStats.push(data[0].dataValues);
-    });
-  }
-  // res.render the appropriate handlebar page
-};
+
+
 
 // Controller for exercise history
 exports.history = function(req) {
@@ -107,13 +127,4 @@ exports.submit = function(req) {
   });
 };
 
-// Controller for the logout route
-exports.logout = function(req, res) {
-  req.session.destroy(function(err) {
-    if (!err) {
-      res.redirect("/");
-    } else {
-      console.log(err);
-    }
-  });
-};
+

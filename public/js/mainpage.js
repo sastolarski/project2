@@ -16,7 +16,7 @@ function upperbody() {
   });
 }
 
-function upperbody() {
+function lowerbody() {
   var exercises = { exercise: ["11", "22", "13"] };
   $.ajax("/upperbody", {
     type: "POST",
