@@ -35,16 +35,16 @@ body {
   animation-timing-function: ease-out;
 }
 
-@-webkit-keyframes mymove {
+/*@-webkit-keyframes mymove {
   from {left: 0px;}
   to {left: 280px;}
 }
 
-/* Standard syntax */
+ Standard syntax 
 @keyframes mymove {
   from {left: 0px;}
   to {left: 280px;}
-}
+}*/
 
 
 #lowCard {

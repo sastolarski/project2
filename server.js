@@ -60,7 +60,7 @@ var models = require("./models");
 // ********** ROUTES *********
 // ***************************
 require("./routes/authRoutes.js")(app, passport);
-require("./routes/htmlRoutes.js")(app, passport);
+require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 // ********************************
