@@ -8,12 +8,16 @@ var db = require("../models");
 // *********************************
 var exports = (module.exports = {});
 
-// Controller for the login route
+// *******************************************
+// ********** GET Route Controllers **********
+// *******************************************
+
+// Controller for the home page route
 exports.home = function(req, res) {
   res.render("home");
 };
 
-// Controller for the dashboard route
+// Controller for the menu route
 exports.menu = function(req, res) {
   var exerciseObject = {
     user: req.user.username
@@ -21,19 +25,7 @@ exports.menu = function(req, res) {
   res.render("menu", exerciseObject);
 };
 
-// Controller for specific exercise data for the user
-exports.exerciseSummary = function(req, res) {
-  db.UserData.findAll({
-    where: {
-      userId: req.params.userid,
-      exerciseId: req.params.exerciseid
-    }
-  }).then(function() {
-    res.render("testworkoutsummary");
-  });
-};
-
-// Controller for upperbody exercise recording
+// Controller for upperbody workout route
 exports.upperbody = function(req, res) {
   db.Exercise.findAll({
     where: {
@@ -41,61 +33,97 @@ exports.upperbody = function(req, res) {
     }
   }).then(function(data) {
     var exerciseArray = [];
+    // Sample data pushed into exerciseArray
+    //   { id: 1,
+    //     name: 'Bench Press',
+    //     upperBody: true,
+    //     lowerBody: false,
+    //     createdAt: Invalid Date,
+    //     updatedAt: Invalid Date,
+    //     userid: 1 }
     for (var i = 0; i < data.length; i++) {
       data[i].dataValues.userid = req.user.id;
       exerciseArray.push(data[i].dataValues);
     }
     var exerciseObject = {
       exercise: exerciseArray,
-      user: req.user.username
+      user: req.user.username,
+      label: "Upper Body",
+      modal: true
     };
-    res.render("upperbody", exerciseObject);
+    res.render("exercise", exerciseObject);
   });
 };
 
-// Controller for upperbody exercise recording
-exports.lowerbody = function(req) {
-  var exercise = req.body.exercise;
-  var user = req.user.id;
-  var lastStats = [];
-  for (var i = 0; i < exercise.length; i++) {
-    db.UserData.findAll({
-      limit: 1,
-      where: {
-        userId: user,
-        exerciseId: parseInt(exercise[i])
-      },
-      order: [["createdAt", "DESC"]]
-    }).then(function(data) {
-      lastStats.push(data[0].dataValues);
-    });
-  }
-  // res.render the appropriate handlebar page
+// Controller for lowerbody workout route
+exports.lowerbody = function(req, res) {
+  db.Exercise.findAll({
+    where: {
+      lowerBody: true
+    }
+  }).then(function(data) {
+    var exerciseArray = [];
+    // Sample data pushed into exerciseArray
+    //   { id: 11,
+    //     name: 'Barbell Squats',
+    //     upperBody: false,
+    //     lowerBody: true,
+    //     createdAt: Invalid Date,
+    //     updatedAt: Invalid Date,
+    //     userid: 1 }
+    for (var i = 0; i < data.length; i++) {
+      data[i].dataValues.userid = req.user.id;
+      exerciseArray.push(data[i].dataValues);
+    }
+    var exerciseObject = {
+      exercise: exerciseArray,
+      user: req.user.username,
+      label: "Lower Body",
+      modal: true
+    };
+    res.render("exercise", exerciseObject);
+  });
 };
 
-// Controller for exercise history
-exports.history = function(req) {
-  // This needs a query for the last x workouts
-  // This should be displayed in a handlebar
-  // do we want x to be selectable? aka history 1 week, 1 month etc.
-  // format the data for handlebars
+// Controller for history route
+exports.history = function(req, res) {
+  db.Exercise.findAll({}).then(function(data) {
+    var exerciseArray = [];
+    // Sample data pushed into exerciseArray
+    //   { id: 1,
+    //     name: 'Bench Press',
+    //     upperBody: true,
+    //     lowerBody: false,
+    //     createdAt: Invalid Date,
+    //     updatedAt: Invalid Date,
+    //     userid: 1 }
+    for (var i = 0; i < data.length; i++) {
+      data[i].dataValues.userid = req.user.id;
+      exerciseArray.push(data[i].dataValues);
+    }
+    var exerciseObject = {
+      exercise: exerciseArray,
+      user: req.user.username,
+      label: "History",
+      modal: false,
+      chart: true
+    };
+    res.render("exercise", exerciseObject);
+  });
+};
+
+// Controller for specific exercise data for the user
+exports.chart = function(req, res) {
   db.UserData.findAll({
     where: {
-      userId: req.user.id
-    }
-  });
-};
-
-// Controller for exercise submission
-exports.submit = function(req) {
-  db.UserData.create({
-    userId: req.user.id,
-    exerciseId: req.body.exercise.id,
-    sets: req.body.exercise.sets,
-    reps: req.body.exercise.reps,
-    weightUsed: req.body.exercise.weight
-  }).then(function() {
-    // Client should render /mainPage after
+      userId: req.params.userid,
+      exerciseId: req.params.exerciseid
+    },
+    limit: 10,
+    order: "UserData.createdAt DESC"
+  }).then(function(data) {
+    console.log(data);
+    res.json(data);
   });
 };
 
@@ -107,5 +135,16 @@ exports.logout = function(req, res) {
     } else {
       console.log(err);
     }
+  });
+};
+
+// *******************************************
+// ********** GET Route Controllers **********
+// *******************************************
+
+// Controller for exercise submission
+exports.submit = function(req, res) {
+  db.UserData.create(req.body).then(function() {
+    res.json({ id: res.insertId });
   });
 };
