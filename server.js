@@ -33,7 +33,7 @@ app.use(passport.session()); // persistent login sessions
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "testmain"
+    defaultLayout: "main"
   })
 );
 app.set("view engine", "handlebars");
@@ -60,7 +60,7 @@ var models = require("./models");
 // ********** ROUTES *********
 // ***************************
 require("./routes/authRoutes.js")(app, passport);
-require("./routes/htmlRoutes.js")(app, passport);
+require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 // ********************************

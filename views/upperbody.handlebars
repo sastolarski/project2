@@ -1,33 +1,20 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a id="logout" href="/main">Log Out</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{username}}</li>
-  </ol>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+  <h1 class="mr-auto">Welcome Back {{user}}</h1>
+  <button type="submit" class="btn btn-primary mx-1 logout">Logout</button>
 </nav>
 <div id="upperPage">
   <div class="upper-container">
     <h1>Upper Body</h1>
-    <form class="exLink">
-        {{#each div}}
-         {{#each exercise}}
-          <a href="#" data-toggle="modal" data-target ="#myModal">
-          {{#if upperBody}}
-           {{> exercise upperBody=true}}
-          {{/if}}
-          </a>
-         {{/each}}
-        {{~/each}}
-        {{!-- <input type="checkbox" name="upper2" value="Incline Bench Press"> Incline Bench Press<br>
-        <input type="checkbox" name="upper3" value="Dumbbell Bench Press" checked> Dumbbell Bench Press<br>
-        <input type="checkbox" name="upper4" value="Dips"> Dips<br>
-        <input type="checkbox" name="upper5" value="Barbell Row"> Barbell Row<br>
-        <input type="checkbox" name="upper6" value="Dumbbell Rows"> Dumbbell Rows<br>
-        <input type="checkbox" name="upper7" value="Pullups"> Pullups<br>
-        <input type="checkbox" name="upper8" value="Lat Pulldown"> Lat Pulldown<br>
-        <input type="checkbox" name="upper9" value="Overhead Press"> Overhead Press<br>
-        <input type="checkbox" name="upper10" value="Lateral Raise"> Lateral Raise<br><br> --}}
+    <form>
+      {{#each exercise}}
+        <p>
+          {{name}}
+        </p>
+      {{/each}}
+      <button type="submit" class="btn btn-primary finished">
+        Finished
+      </button>
     </form>
-
   </div>
 </div>
 

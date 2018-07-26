@@ -1,3 +1,4 @@
+<!-- <button type="submit" class="btn btn-primary mx-auto my-1 exercise" data-exerciseId="{{id}}" data-userId="{{userid}}">{{name}}</button><br> -->
 <div class="form-check">
 	
 
@@ -7,38 +8,4 @@
 			{{name}}
 		</a>
 	</label>
-</div>
-
-{{!-- upper card --}}
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-	  <form>
-		{{#each exercise}}
-		{{#if upperBody}}
-			{{> exercise upperBody=true}}
-		{{/if}}
-		{{/each}}
-	  </form> 
-	</div>
-
-{{!-- lower card --}}
-	<div class="col-md-4">
- 	  <form>
-	    {{#each exercise}}
-	    {{#if lowerBody}}
-			{{> exercise lowerBody=true}}
-		{{/if}}
-		{{/each}}
-	  </form>
-    </div>
-
-{{!-- Track history --}}
-	<div class ="col-md-4">
-	  <div>
-        <h4 class="card-text">Track History</h4>
-        <a href="/history/{{id}}/{{userid}}" class="track" class="card-link">Go Tracking!</a>
-      </div>
-	</div>
-  </div>
 </div>
