@@ -7,18 +7,25 @@
       </ol>
       </nav>
       <h1>Lower Body</h1>
-      <form action="/action_page.php">
-        <input type="checkbox" name="lower1" value="Barbell Squats"> Barbell Squats<br>
+      <form>
+      {{#each div}}
+        {{#each exercise}}
+          <a href="#" data-toggle="modal" data-target ="#myModal">
+           {{#if lowerBody}}
+            {{> exercise lowerBody=true}}
+           {{/if}}
+          </a>
+        {{/each}}
+      {{~/each}}
+        {{!-- <input type="checkbox" name="lower1" value="Barbell Squats"> Barbell Squats<br>
         <input type="checkbox" name="lower2" value="Deadlift"> Deadlift<br>
         <input type="checkbox" name="lower3" value="Front Squats" checked> Front Squats<br>
         <input type="checkbox" name="lower4" value="Lunges"> Lunges<br>
         <input type="checkbox" name="lower5" value="Romanian Deadlift"> Romanian Deadlift<br>
         <input type="checkbox" name="lower6" value="Leg Extension"> Leg Extension<br>
         <input type="checkbox" name="lower7" value="Leg Curl"> Leg Curl<br>
-        <input type="checkbox" name="lower8" value="Calf Raises"> Calf Raises<br><br>
+        <input type="checkbox" name="lower8" value="Calf Raises"> Calf Raises<br><br> --}}
       </form> 
-    
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Choose</button> 
 
   </div>
 </div>
@@ -26,7 +33,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

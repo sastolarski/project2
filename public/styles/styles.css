@@ -2,13 +2,14 @@
   background-image: url("http://www.bravotv.com/sites/nbcubravotv/files/legacy/workout-logo.png");
   background-repeat: no-repeat;
   background-position: right;
-  background-color: #daf2ea;
+  background-color: rgb(100, 210, 200, 0.1);
 }
 
 body {
   background-image: url("https://cdn.images.express.co.uk/img/dynamic/11/590x/secondary/Gym-workout-diet-1177877.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Merienda', cursive;
 }
 
 .card {
@@ -18,45 +19,22 @@ body {
 }
 
 #upCard {
-  background: lightblue;
+  background: rgb(202, 147, 187, 0.9);
   padding: 100px 50px;
-  border-radius: 25px;
-
+  border-radius: 150px;
 
 }
-
-#upCard {
-  animation-timing-function: ease;
-}
-#lowCard {
-  animation-timing-function: ease-in;
-}
-#historyCard {
-  animation-timing-function: ease-out;
-}
-
-/*@-webkit-keyframes mymove {
-  from {left: 0px;}
-  to {left: 280px;}
-}
-
- Standard syntax 
-@keyframes mymove {
-  from {left: 0px;}
-  to {left: 280px;}
-}*/
-
 
 #lowCard {
-  background: lightgray;
+  background: rgb(202, 147, 187, 0.7);
   padding: 150px 50px;
-  border-radius: 25px;
+  border-radius: 150px;
 }
 
 #historyCard {
-  background: lightgoldenrodyellow;
+  background: rgb(202, 147, 187, 0.5);
   padding: 200px 50px;
-  border-radius: 25px;
+  border-radius: 150px;
 }
 
 h4 {
