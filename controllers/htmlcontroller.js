@@ -118,9 +118,12 @@ exports.chart = function(req, res) {
     where: {
       userId: req.params.userid,
       exerciseId: req.params.exerciseid
-    }
-  }).then(function() {
-    console.log(res);
+    },
+    limit: 10,
+    order: "UserData.createdAt DESC"
+  }).then(function(data) {
+    console.log(data);
+    res.json(data);
   });
 };
 
