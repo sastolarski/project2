@@ -1,20 +1,19 @@
-// **********************************
-// ********** DEPENDENCIES **********
-// **********************************
-var authController = require("../controllers/authController.js");
-
 // ***************************
 // ********** ROUTES *********
 // ***************************
-module.exports = function(app) {
-  // ********************************
-  // ********** GET Routes **********
-  // ********************************
-  app.get("/logout", authController.logout); // Route for logout and return to the login page
-
-  // *********************************
-  // ********** POST Routes **********
-  // *********************************
-  app.post("/register", authController.signup);
-  app.post("/login", authController.login);
+module.exports = function(app, passport) {
+  app.post(
+    "/register",
+    passport.authenticate("local-signup", {
+      successRedirect: "/menu",
+      failureRedirect: "/"
+    })
+  );
+  app.post(
+    "/login",
+    passport.authenticate("local-signin", {
+      successRedirect: "/menu",
+      failureRedirect: "/"
+    })
+  );
 };

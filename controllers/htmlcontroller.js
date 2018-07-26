@@ -8,28 +8,33 @@ var db = require("../models");
 // *********************************
 var exports = (module.exports = {});
 
-// Controller for the homepage
-exports.example = function(req, res) {
-  res.render("example");
-};
-
 // Controller for the login route
-exports.signup = function(req, res) {
-  res.render("signuppage");
-};
-
-// Controller for the login route
-exports.login = function(req, res) {
-  res.render("login");
+exports.home = function(req, res) {
+  res.render("home");
 };
 
 // Controller for the dashboard route
-exports.mainPage = function(req, res) {
-  res.render("mainPage");
+exports.menu = function(req, res) {
+  var exerciseObject = {
+    user: req.user.username
+  };
+  res.render("menu", exerciseObject);
+};
+
+// Controller for specific exercise data for the user
+exports.exerciseSummary = function(req, res) {
+  db.UserData.findAll({
+    where: {
+      userId: req.params.userid,
+      exerciseId: req.params.exerciseid
+    }
+  }).then(function() {
+    res.render("testworkoutsummary");
+  });
 };
 
 // Controller for upperbody exercise recording
-exports.upperbody = function(req) {
+exports.upperbody = function(req, res) {
   db.Exercise.findAll({
     where: {
       upperBody: true
@@ -44,59 +49,40 @@ exports.upperbody = function(req) {
       exercise: exerciseArray,
       user: req.user.username
     };
-    res.render("upper", exerciseObject);
+    res.render("upperbody", exerciseObject);
   });
 };
 
 // Controller for upperbody exercise recording
 exports.lowerbody = function(req) {
-  db.Exercise.findAll({
-    where: {
-      lowerBody: true
-    }
-  }).then(function(data) {
-    var exerciseArray = [];
-    for (var i = 0; i < data.length; i++) {
-      data[i].dataValues.userid = req.user.id;
-      exerciseArray.push(data[i].dataValues);
-    }
-    var exerciseObject = {
-      exercise: exerciseArray,
-      user: req.user.username
-    };
-    res.render("lowerPage", exerciseObject);
-  });
+  var exercise = req.body.exercise;
+  var user = req.user.id;
+  var lastStats = [];
+  for (var i = 0; i < exercise.length; i++) {
+    db.UserData.findAll({
+      limit: 1,
+      where: {
+        userId: user,
+        exerciseId: parseInt(exercise[i])
+      },
+      order: [["createdAt", "DESC"]]
+    }).then(function(data) {
+      lastStats.push(data[0].dataValues);
+    });
+  }
+  // res.render the appropriate handlebar page
 };
 
 // Controller for exercise history
 exports.history = function(req) {
-  db.Exercise.findAll({}).then(function(data) {
-    var exerciseArray = [];
-    for (var i = 0; i < data.length; i++) {
-      data[i].dataValues.userid = req.user.id;
-      exerciseArray.push(data[i].dataValues);
-    }
-    var exerciseObject = {
-      exercise: exerciseArray,
-      user: req.user.username
-    };
-    res.render("history", exerciseObject);
-  });
-};
-
-// **************************************
-// ********** POST Controllers **********
-// **************************************
-
-// Controller for specific exercise data for the user
-exports.exerciseSummary = function(req, res) {
+  // This needs a query for the last x workouts
+  // This should be displayed in a handlebar
+  // do we want x to be selectable? aka history 1 week, 1 month etc.
+  // format the data for handlebars
   db.UserData.findAll({
     where: {
-      userId: req.params.userid,
-      exerciseId: req.params.exerciseid
+      userId: req.user.id
     }
-  }).then(function() {
-    res.render("testworkoutsummary");
   });
 };
 
@@ -109,6 +95,17 @@ exports.submit = function(req) {
     reps: req.body.exercise.reps,
     weightUsed: req.body.exercise.weight
   }).then(function() {
-    // nothing needs to happen once this is done..
+    // Client should render /mainPage after
+  });
+};
+
+// Controller for the logout route
+exports.logout = function(req, res) {
+  req.session.destroy(function(err) {
+    if (!err) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+    }
   });
 };

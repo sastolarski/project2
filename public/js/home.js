@@ -7,11 +7,15 @@ function login() {
       .val()
       .trim()
   };
+  if (login.username === "" || login.password === "") {
+    return alert("Please enter username and password");
+  }
+  console.log(login);
   $.ajax("/login", {
     type: "POST",
     data: login
   }).then(function() {
-    window.location.href = "/mainpage";
+    window.location.href = "/menu";
   });
 }
 
@@ -24,11 +28,14 @@ function register() {
       .val()
       .trim()
   };
+  if (login.username === "" || login.password === "") {
+    return alert("Please enter username and password");
+  }
   $.ajax("/register", {
     type: "POST",
     data: register
   }).then(function() {
-    window.location.href = "/mainpage";
+    window.location.href = "/menu";
   });
 }
 
