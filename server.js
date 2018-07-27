@@ -75,7 +75,11 @@ models.sequelize
     app.listen(PORT, function(err) {
       if (!err) {
         console.log(
-          "CORS ENABLED ==> Listening on port " + PORT + ". Visit http://localhost:" + PORT + "/ in your browser.",
+          "CORS ENABLED ==> Listening on port " +
+            PORT +
+            ". Visit http://localhost:" +
+            PORT +
+            "/ in your browser."
         );
       }
       console.log(err);
