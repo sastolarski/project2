@@ -3,7 +3,7 @@
 // **********************************
 require("dotenv").load();
 var bodyParser = require("body-parser");
-// var cors = require("cors");
+var cors = require("cors");
 var exphbs = require("express-handlebars");
 var express = require("express");
 var passport = require("passport");
@@ -45,11 +45,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // For CORS
-// var corsOptions = {
-//   origin: process.env.ORIGIN,
-//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
-// app.use(cors());
+app.use(cors());
 
 // ****************************
 // ********** MODELS **********
@@ -79,9 +75,7 @@ models.sequelize
     app.listen(PORT, function(err) {
       if (!err) {
         console.log(
-          "CORS ENABLED ==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-          PORT,
-          PORT
+          "CORS ENABLED ==> Listening on port " + PORT + ". Visit http://localhost:" + PORT + "/ in your browser.",
         );
       }
       console.log(err);
