@@ -5,31 +5,38 @@ body {
   font-family: 'Merienda', cursive;
 }
 
-.card {
-  position: relative;
-  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
-  animation: mymove 5s infinite;
-}
-
 #upperbody {
-  background: rgb(202, 147, 187, 0.9);
+  background: rgba(218, 158, 202, 0.9);
   padding: 100px 50px;
   border-radius: 150px;
-
+  margin: 100px auto;
 }
 
-#lowerbody {
-  background: rgb(202, 147, 187, 0.7);
+#lowerbody{
+  background: rgba(202, 147, 187, 0.7);
   padding: 150px 50px;
   border-radius: 150px;
+  margin: 100px auto;
 }
 
 #history {
-  background: rgb(202, 147, 187, 0.5);
+  background: rgba(202, 147, 187, 0.5);
   padding: 200px 50px;
   border-radius: 150px;
+  margin: 100px auto;
 }
 
-h4 {
-  text-shadow: 0 0 3px #FF0000;
+/* navbar  */
+.navbar-expand-lg {
+  background-color: rgb(106, 143, 184, 0.3)!important;
+}
+
+/* button */
+button {
+  background: rgb(228, 88, 96, 0.7) !important;
+ 
+}
+
+button:hover{
+  background: rgb(255, 165, 0, 0.7) !important;
 }
