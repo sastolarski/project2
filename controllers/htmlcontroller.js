@@ -114,13 +114,15 @@ exports.history = function(req, res) {
 
 // Controller for specific exercise data for the user
 exports.chart = function(req, res) {
+  console.log("++++++++++++++++++++");
+  console.log("User Id: " + req.params.userid)
+  console.log("User Id: " + req.params.exerciseid)
   db.UserData.findAll({
     where: {
       userId: req.params.userid,
       exerciseId: req.params.exerciseid
     },
-    limit: 10,
-    order: "UserData.createdAt DESC"
+    limit: 10
   }).then(function(data) {
     console.log(data);
     res.json(data);
