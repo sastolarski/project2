@@ -8,7 +8,6 @@ var exphbs = require("express-handlebars");
 var express = require("express");
 var passport = require("passport");
 var session = require("express-session");
-var mysql = require("mysql")
 
 // For Express
 var app = express();
@@ -76,7 +75,11 @@ models.sequelize
     app.listen(PORT, function(err) {
       if (!err) {
         console.log(
-          "CORS ENABLED ==> Listening on port " + PORT + ". Visit http://localhost:" + PORT + "/ in your browser.",
+          "CORS ENABLED ==> Listening on port " +
+            PORT +
+            ". Visit http://localhost:" +
+            PORT +
+            "/ in your browser."
         );
       }
       console.log(err);

@@ -1,7 +1,7 @@
 // **********************************
 // ********** DEPENDENCIES **********
 // **********************************
-var htmlController = require("../controllers/htmlController.js");
+var htmlController = require("./htmlcontroller.js");
 
 // ***************************
 // ********** ROUTES *********
