@@ -72,7 +72,7 @@ models.sequelize
   .then(function() {
     console.log("Nice! Database looks fine");
     // Start Server
-    app.listen(PORT, function(err) {
+    app.listen(process.env.PORT, function(err) {
       if (!err) {
         console.log(
           "CORS ENABLED ==> Listening on port " + PORT + ". Visit http://localhost:" + PORT + "/ in your browser.",
