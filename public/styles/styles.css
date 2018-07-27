@@ -5,11 +5,6 @@ body {
   font-family: 'Merienda', cursive;
 }
 
-.card {
-  position: relative;
-  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
-  animation: mymove 5s infinite;
-}
 
 #upperbody {
   background: rgb(202, 147, 187, 0.9);
@@ -30,6 +25,17 @@ body {
   border-radius: 150px;
 }
 
-h4 {
-  text-shadow: 0 0 3px #FF0000;
+
+/* navbar background */
+.navbar-expand-lg {
+  background-color: rgb(106, 143, 184, 0.3)!important;
+}
+
+/* button color */
+button {
+  background: rgb(228, 88, 96, 0.7) !important;
+}
+
+button:hover{
+  background: rgb(255, 165, 0, 0.7) !important;
 }
